@@ -31,6 +31,7 @@
 #include <stdio.h>
 #include <math.h>
 #include "app_init.h"
+#include "usbd_cdc_if.h"
 /* USER CODE END Includes */
 
 /* Private typedef -----------------------------------------------------------*/

@@ -78,10 +78,6 @@ Motor_MotorTypeDef* Motor_GetMotorDataPtr(uint8_t group_idx);
 // 新增：根据电机ID判断电机类型
 Motor_MotorType_e FDCAN_GetMotorTypeById(uint8_t motor_id);
 
-/* 全局宏定义 */
-#define MOTOR_GROUP_NUM 22  // 最大电机组数量
-#define DM_MOTOR_GROUP_NUM 10
-#define RS_MOTOR_GROUP_NUM 12
 
 /* 全局变量声明  */
 extern Motor_MotorGroupTypeDef *Motor_groupHandle[MOTOR_GROUP_NUM];

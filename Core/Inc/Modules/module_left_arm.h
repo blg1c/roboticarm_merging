@@ -17,6 +17,7 @@ extern "C" {
 #include "util_can.h"
 //#include "module_motor_cmd.h"
 #include "periph_motor.h"
+#include "sys_const.h"
 
 /* 电机双环PID控制结构体 */
 typedef struct {
@@ -36,8 +37,6 @@ typedef struct {
 
 
 
-/* 全局宏定义 */
-#define LEFT_ARM_DOUBLE_LOOP_PID_MOTOR_NUM 5  // 左臂支持电机数量（1-5号）
 
 /* 全局变量 */
 extern LeftArm_DoubleLoopPIDTypeDef LeftArm_DoubleLoopPID[LEFT_ARM_DOUBLE_LOOP_PID_MOTOR_NUM];

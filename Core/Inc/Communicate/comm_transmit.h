@@ -18,7 +18,7 @@ extern "C" {
 
 #include "main.h"
 
-#define Const_Comm_Transmit_BUFF_SIZE 3
+
 
 typedef struct {
     uint32_t (*bus_func)(uint8_t *buff);

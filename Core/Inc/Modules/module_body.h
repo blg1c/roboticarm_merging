@@ -13,25 +13,8 @@ extern "C" {
 #include "periph_motor.h"
 #include "alg_pid.h"
 #include "util_can.h"
+#include "sys_const.h"
 
-/* 1. 身体电机总数与 ID 范围 */
-#define BODY_DOUBLE_LOOP_PID_MOTOR_NUM 12  
-#define BODY_MOTOR_ID_MIN 11
-#define BODY_MOTOR_ID_MAX 22
-
-/* 2. 物理极限参数 (Robot State Limits) */
-static const float RS_P_MIN = -12.57f;  // 位置最小值(rad)
-static const float RS_P_MAX = 12.57f;   // 位置最大值(rad)
-static const float RS_V_MIN = -50.0f;   // 速度最小值(rad/s)
-static const float RS_V_MAX = 50.0f;    // 速度最大值(rad/s)
-static const float RS_T_MIN = -36.0f;   // 力矩最小值(Nm)
-static const float RS_T_MAX = 36.0f;    // 力矩最大值(Nm)
-
-static const float RS_KP_MIN = 0.0f;     // Kp(刚度)最小值
-static const float RS_KP_MAX = 5000.0f;  // Kp(刚度)最大值
-
-static const float RS_KD_MIN = 0.0f;     // Kd(阻尼)最小值
-static const float RS_KD_MAX = 100.0f;   // Kd(阻尼)最大值
 
 /* 3. 身体电机控制结构体 */
 typedef struct {

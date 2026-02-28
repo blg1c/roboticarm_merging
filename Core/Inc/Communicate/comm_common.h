@@ -18,14 +18,7 @@ extern "C" {
 #include "main.h"
 #include "periph_motor.h"
 
-// 缓冲区长度定义
-#define COMM_SEND_BUFF_LEN     64
-#define COMM_RECEIVE_BUFF_LEN  64
 
-// 控制对象宏（对应帧格式）
-#define CONTROL_OBJ_BODY   0x00  // body
-#define CONTROL_OBJ_L_ARM    0x01  // 左臂
-#define CONTROL_OBJ_R_ARM    0x02  // 右臂
 
 // 通信状态枚举
 typedef enum {
@@ -61,7 +54,7 @@ typedef struct {
 // 外部指令表声明（需在comm_transmit/comm_receive中定义）
 //extern Comm_CmdFuncDef CommCmd_Send[];
 //extern Comm_CmdFuncDef CommCmd_Receive[];
-extern uint32_t Const_Comm_Transmit_BUFF_SIZE;
+
 extern uint32_t Const_Comm_OFFLINE_TIME;
 
 // 函数声明

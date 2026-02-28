@@ -17,6 +17,7 @@ extern "C" {
 //#include "comm_receive.h"
 
 #include "stdint.h"
+#include "sys_const.h"
 
 /* FDCAN通道枚举（仅FDCAN1 - 所有电机共用通道） */
 typedef enum {
@@ -43,8 +44,6 @@ typedef struct {
     float kd;                       // 速度阻尼系数(0~5)
 } Motor_ControlCmd_t;
 
-// 电机控制命令数组长度
-#define MOTOR_CTRL_CMD_NUM 22
 
 void Motor_CtrlCmds_Init(void);
 

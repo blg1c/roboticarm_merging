@@ -10,6 +10,7 @@
 #include "periph_motor.h"
 #include "sys_dwt.h"
 #include "lib_buff.h"
+#include "sys_const.h"
 #include <string.h>
 
 /* 私有全局变量 */
@@ -22,18 +23,6 @@ static const float DM_V_MAX[] = {30.0f, 45.0f, 30.0f};     // 速度最大值(rad/s)
 static const float DM_T_MIN[] = {-28.0f, -54.0f, -10.0f};  // 力矩最小值(Nm)
 static const float DM_T_MAX[] = {28.0f, 54.0f, 10.0f};     // 力矩最大值(Nm)
 
-static const float RS_P_MIN = -12.57f;  // 位置最小值(rad)
-static const float RS_P_MAX = 12.57f;   // 位置最大值(rad)
-static const float RS_V_MIN = -50.0f;   // 速度最小值(rad/s)
-static const float RS_V_MAX = 50.0f;    // 速度最大值(rad/s)
-static const float RS_T_MIN = -36.0f;   // 力矩最小值(Nm)
-static const float RS_T_MAX = 36.0f;    // 力矩最大值(Nm)
-
-static const float RS_KP_MIN = 0.0f;     // Kp(刚度)最小值
-static const float RS_KP_MAX = 5000.0f;  // Kp(刚度)最大值
-
-static const float RS_KD_MIN = 0.0f;     // Kd(阻尼)最小值
-static const float RS_KD_MAX = 100.0f;   // Kd(阻尼)最大值
 
 /* 私有函数声明 */
 static uint8_t FDCAN_CheckChannelValid(FDCAN_Channel_e ch);
@@ -278,7 +267,7 @@ void FDCAN_RxMessageCallback(FDCAN_HandleTypeDef* phfdcan, FDCAN_RxHeaderTypeDef
 
 	
 		//1.处理DM电机
-	if (ch == (FDCAN_Channel_e)FDCAN1)
+	if (ch == FDCAN1_CH)
 	{
     // 解析电机数据（协议格式）
     uint8_t motor_id = rx_data[0] & 0x0F;          // 电机ID（低4位）
@@ -325,7 +314,7 @@ void FDCAN_RxMessageCallback(FDCAN_HandleTypeDef* phfdcan, FDCAN_RxHeaderTypeDef
     }
 	}
 	
-	else if(ch == (FDCAN_Channel_e)FDCAN2)
+	else if(ch == FDCAN2_CH)
 	{
 		uint32_t ext_id = rx_header->Identifier;
 

@@ -11,6 +11,7 @@
 
 #include "util_gpio.h"
 #include "sys_dwt.h"
+#include "sys_const.h"
 
 GPIO_GPIOTypeDef RS485_TX_START         = {GPIOF, GPIO_PIN_1 , 0x01, 0, GPIO_PIN_RESET};
 GPIO_GPIOTypeDef CS_ACCEL_START         = {GPIOA, GPIO_PIN_4 , 0xff, 0, GPIO_PIN_RESET};

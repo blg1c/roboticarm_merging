@@ -18,13 +18,7 @@ extern "C" {
 #include "math.h"
 #include "fdcan.h"
 #include "module_motor_cmd.h"  // 引入module层电机指令定义
-
-/* 常量定义 */
-#define CONST_FDCAN_RX_BUFF_LEN    16U    // 接收缓冲区长度
-#define CONST_FDCAN_MAX_DATA_LEN   8U     // CAN最大数据长度
-#define FDCAN_DLC_SHIFT            16U    // FDCAN DLC偏移位数
-#define PI                         3.1415926535f // 圆周率
-
+#include "sys_const.h"
 
 
 /* 函数声明 */

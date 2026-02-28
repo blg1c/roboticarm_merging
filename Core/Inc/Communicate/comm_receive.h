@@ -19,9 +19,6 @@ extern "C" {
 #include "main.h"
 #include "util_can.h"
 
-#define Const_Comm_Receive_BUFF_SIZE 9
-#define LEFT 0
-#define RIGHT 1
 
 
 

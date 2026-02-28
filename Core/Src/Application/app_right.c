@@ -30,7 +30,7 @@ void RightArm_Task(void const * argument) {
 		
 	 RightArm_Output();
 		
-	 Comm_Send_R_Arm_CommData();
+	 //Comm_Send_R_Arm_CommData();
 		
    osDelay(2);
   }

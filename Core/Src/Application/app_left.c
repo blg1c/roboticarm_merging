@@ -27,10 +27,10 @@ void LeftArm_Task(void const * argument) {
 
    
 		
-	 LeftArm_Output();
-		
-		
-	 Comm_Send_L_Arm_CommData();
+	 //LeftArm_Output();
+	FDCAN_SendMITCmd(&hfdcan1, 0x01, 0, 0, 0, 0, 5);
+	
+//Comm_Send_L_Arm_CommData();
 	 
    osDelay(2);
   }

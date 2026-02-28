@@ -25,7 +25,7 @@ void Body_Task(void const * argument) {
      
      Body_Output();
         
-     Comm_Send_Body_CommData();
+     //Comm_Send_Body_CommData();
      
      osDelay(2);
   }

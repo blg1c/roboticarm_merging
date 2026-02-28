@@ -12,7 +12,7 @@
 #include <string.h>
 #include "fdcan.h"
 #include "lib_buff.h"
-
+#include "sys_const.h"
 
 /* 全局变量实例化 */
 Motor_MotorGroupTypeDef *Motor_groupHandle[MOTOR_GROUP_NUM] = {NULL};

@@ -20,12 +20,6 @@ extern "C" {
 #include "gpio.h"
 
 
-#define RISE_TRIGGER    0xAA
-#define DOWN_TRIGGER    0xBB
-#define KEY_FUNC_EVENT_ID   0xA1
-#define KEY_BACK_EVENT_ID   0x12
-#define BIG_KEY1_EVENT_ID   0x64
-#define BIG_KEY2_EVENT_ID   0x66
 
 typedef struct {
     GPIO_TypeDef* gpio_handle;

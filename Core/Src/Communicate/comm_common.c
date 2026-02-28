@@ -17,6 +17,7 @@
 //#include "sys_const.h"
 #include "alg_crc.h"
 #include "periph_motor.h"
+#include "sys_const.h"
 
 // 1. 移除UART依赖，引入USB工具头文件
 #include "util_usb.h"

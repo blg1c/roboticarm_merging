@@ -16,6 +16,7 @@ extern "C" {
 #include "periph_motor.h"
 #include "alg_pid.h"
 #include "util_can.h"
+#include "sys_const.h"
 
 /* 电机双环PID控制结构体 */
 typedef struct {
@@ -33,8 +34,7 @@ typedef struct {
     FDCAN_HandleTypeDef* can_hdl;  // CAN句柄
 } RightArm_DoubleLoopPIDTypeDef;
 
-/* 全局宏定义 */
-#define RIGHT_ARM_DOUBLE_LOOP_PID_MOTOR_NUM 5  // 右臂支持电机数量（6-10号）
+
 
 /* 全局变量 */
 extern RightArm_DoubleLoopPIDTypeDef RightArm_DoubleLoopPID[RIGHT_ARM_DOUBLE_LOOP_PID_MOTOR_NUM];

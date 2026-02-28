@@ -13,6 +13,7 @@
 #include "sys_dwt.h"
 #include "usbd_cdc.h"  // 显式引入CDC驱动头文件
 #include "usbd_cdc_if.h"
+#include "sys_const.h"
 
 extern USBD_HandleTypeDef hUsbDeviceHS;
 
