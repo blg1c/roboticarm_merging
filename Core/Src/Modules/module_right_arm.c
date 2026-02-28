@@ -229,9 +229,7 @@ void RightArm_Output() {
         // 1. 获取当前电机的控制指令和电机类型
         Motor_ControlCmd_t* cmd = Motor_GetCtrlCmdPtr(motor_id - 1);  
         Motor_MotorType_e motor_type = FDCAN_GetMotorTypeById(motor_id);
-        if (motor_type == Motor_TYPE_MAX) {
-            continue;  // 无效电机ID，跳过
-        }
+  
 
         // 2. 获取电机CAN句柄（复用现有PID结构体的CAN句柄，保证一致性）
         RightArm_DoubleLoopPIDTypeDef* pid_hdl = RightArm_DoubleLoopPID_GetHandle(motor_type, motor_id);

@@ -154,8 +154,7 @@ void Body_Output(void) {
         // 映射索引，获取控制命令
         Motor_ControlCmd_t* cmd = Motor_GetCtrlCmdPtr(motor_id - 1); 
         Motor_MotorType_e motor_type = FDCAN_GetMotorTypeById(motor_id - 1);
-        
-        if (motor_type == Motor_TYPE_MAX) continue;
+     
 
         Body_DoubleLoopPIDTypeDef* pid_hdl = Body_DoubleLoopPID_GetHandle(motor_type, motor_id);
         if (pid_hdl == NULL || pid_hdl->can_hdl == NULL || !pid_hdl->motor_hdl->is_online) continue;

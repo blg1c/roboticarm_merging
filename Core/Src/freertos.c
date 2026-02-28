@@ -51,21 +51,21 @@
 osThreadId_t LeftArmTaskHandle;
 const osThreadAttr_t LeftArmTask_attributes = {
   .name = "LeftArmTask",
-  .stack_size = 128 * 4,
+  .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityRealtime,
 };
 /* Definitions for RightArmTask */
 osThreadId_t RightArmTaskHandle;
 const osThreadAttr_t RightArmTask_attributes = {
   .name = "RightArmTask",
-  .stack_size = 128 * 4,
+  .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityRealtime,
 };
 /* Definitions for BodyTask */
 osThreadId_t BodyTaskHandle;
 const osThreadAttr_t BodyTask_attributes = {
   .name = "BodyTask",
-  .stack_size = 128 * 4,
+  .stack_size = 256 * 4,
   .priority = (osPriority_t) osPriorityRealtime,
 };
 

@@ -69,14 +69,14 @@ void HAL_PCD_MspInit(PCD_HandleTypeDef* pcdHandle)
   if(pcdHandle->Instance==USB_OTG_HS)
   {
   /* USER CODE BEGIN USB_OTG_HS_MspInit 0 */
-	__HAL_RCC_GPIOA_CLK_ENABLE();                   // Ê¹ï¿½ï¿½GPIOAï¿½Ë¿ï¿½
-    GPIO_InitTypeDef GPIO_InitStruct = {0};         // ï¿½ï¿½ï¿½ï¿½ï¿½á¹¹ï¿½ï¿½; ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Î»ï¿½ï¿½ï¿½ï¿½Í¬ï¿½ï¿½ï¿½ï¿½ï¿½Ð¿É²ï¿½Ð´
-    GPIO_InitStruct.Pin = GPIO_PIN_12;              // ï¿½ï¿½ï¿½ï¿½PA12, ï¿½ï¿½D+
-    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;     // ï¿½ï¿½ï¿½Å¹ï¿½ï¿½ï¿½Ä£Ê½
-    GPIO_InitStruct.Pull = GPIO_PULLDOWN;           // ï¿½ï¿½ï¿½ï¿½
-    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;    // ï¿½ï¿½ï¿½Å·ï¿½×ªï¿½Ù¶ï¿½
-    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);         // ï¿½ï¿½Ê¼ï¿½ï¿½
-    HAL_Delay(5);                                   // ï¿½ï¿½ï¿½ï¿½Æ¬ï¿½ï¿½
+	__HAL_RCC_GPIOA_CLK_ENABLE();                   // Ê¹ÄÜGPIOA¶Ë¿Ú
+    GPIO_InitTypeDef GPIO_InitStruct = {0};         // ÉùÃ÷½á¹¹Ìå; Èç¹ûÓëÎÄÖÐÎ»ÖÃÏàÍ¬£¬ÕâÐÐ¿É²»Ð´
+    GPIO_InitStruct.Pin = GPIO_PIN_12;              // Òý½ÅPA12, ¼´D+
+    GPIO_InitStruct.Mode = GPIO_MODE_OUTPUT_PP;     // Òý½Å¹¤×÷Ä£Ê½
+    GPIO_InitStruct.Pull = GPIO_PULLDOWN;           // ÏÂÀ­
+    GPIO_InitStruct.Speed = GPIO_SPEED_FREQ_LOW;    // Òý½Å·´×ªËÙ¶È
+    HAL_GPIO_Init(GPIOA, &GPIO_InitStruct);         // ³õÊ¼»¯
+    HAL_Delay(5);                                   // ³ÖÐøÆ¬¿Ì
   /* USER CODE END USB_OTG_HS_MspInit 0 */
 
   /** Initializes the peripherals clock
