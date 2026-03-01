@@ -277,73 +277,73 @@ void Motor_InitAllMotors(void) {
     Motor_DM4310_Group4.motor_handle[0] = &Motor_DM4310_Motor4;
 	
 	// RS06 电机 1 (ID: 0x0B / 11)
-    // Motor_groupHandle[10] = &Motor_Robstride06_Group1;
+    Motor_groupHandle[10] = &Motor_Robstride06_Group1;
     Motor_InitMotorGroup(&Motor_Robstride06_Group1, Motor_TYPE_RS06, 1, &hfdcan2, NULL, 0x0B);
     Motor_InitMotor(&Motor_Robstride06_Motor1, Motor_TYPE_RS06, 0x0B, 1.0f, RS06_encoder_callback);
     Motor_Robstride06_Group1.motor_handle[0] = &Motor_Robstride06_Motor1;
 
     // RS06 电机 2 (ID: 0x0C / 12)
-    // Motor_groupHandle[11] = &Motor_Robstride06_Group2;
+    Motor_groupHandle[11] = &Motor_Robstride06_Group2;
     Motor_InitMotorGroup(&Motor_Robstride06_Group2, Motor_TYPE_RS06, 1, &hfdcan2, NULL, 0x0C);
     Motor_InitMotor(&Motor_Robstride06_Motor2, Motor_TYPE_RS06, 0x0C, 1.0f, RS06_encoder_callback);
     Motor_Robstride06_Group2.motor_handle[0] = &Motor_Robstride06_Motor2;
 
     // RS06 电机 3 (ID: 0x0D / 13)
-    // Motor_groupHandle[12] = &Motor_Robstride06_Group3;
+    Motor_groupHandle[12] = &Motor_Robstride06_Group3;
     Motor_InitMotorGroup(&Motor_Robstride06_Group3, Motor_TYPE_RS06, 1, &hfdcan2, NULL, 0x0D);
     Motor_InitMotor(&Motor_Robstride06_Motor3, Motor_TYPE_RS06, 0x0D, 1.0f, RS06_encoder_callback);
     Motor_Robstride06_Group3.motor_handle[0] = &Motor_Robstride06_Motor3;
 
     // RS06 电机 4 (ID: 0x0E / 14)
-    // Motor_groupHandle[13] = &Motor_Robstride06_Group4;
+    Motor_groupHandle[13] = &Motor_Robstride06_Group4;
     Motor_InitMotorGroup(&Motor_Robstride06_Group4, Motor_TYPE_RS06, 1, &hfdcan2, NULL, 0x0E);
     Motor_InitMotor(&Motor_Robstride06_Motor4, Motor_TYPE_RS06, 0x0E, 1.0f, RS06_encoder_callback);
     Motor_Robstride06_Group4.motor_handle[0] = &Motor_Robstride06_Motor4;
 
     // RS06 电机 5 (ID: 0x0F / 15)
-    // Motor_groupHandle[14] = &Motor_Robstride06_Group5;
+    Motor_groupHandle[14] = &Motor_Robstride06_Group5;
     Motor_InitMotorGroup(&Motor_Robstride06_Group5, Motor_TYPE_RS06, 1, &hfdcan2, NULL, 0x0F);
     Motor_InitMotor(&Motor_Robstride06_Motor5, Motor_TYPE_RS06, 0x0F, 1.0f, RS06_encoder_callback);
     Motor_Robstride06_Group5.motor_handle[0] = &Motor_Robstride06_Motor5;
 
     // RS06 电机 6 (ID: 0x10 / 16)
-    // Motor_groupHandle[15] = &Motor_Robstride06_Group6;
+    Motor_groupHandle[15] = &Motor_Robstride06_Group6;
     Motor_InitMotorGroup(&Motor_Robstride06_Group6, Motor_TYPE_RS06, 1, &hfdcan2, NULL, 0x10);
     Motor_InitMotor(&Motor_Robstride06_Motor6, Motor_TYPE_RS06, 0x10, 1.0f, RS06_encoder_callback);
     Motor_Robstride06_Group6.motor_handle[0] = &Motor_Robstride06_Motor6;
 
     // RS06 电机 7 (ID: 0x11 / 17)
-    // Motor_groupHandle[16] = &Motor_Robstride06_Group7;
+    Motor_groupHandle[16] = &Motor_Robstride06_Group7;
     Motor_InitMotorGroup(&Motor_Robstride06_Group7, Motor_TYPE_RS06, 1, &hfdcan2, NULL, 0x11);
     Motor_InitMotor(&Motor_Robstride06_Motor7, Motor_TYPE_RS06, 0x11, 1.0f, RS06_encoder_callback);
     Motor_Robstride06_Group7.motor_handle[0] = &Motor_Robstride06_Motor7;
 
     // RS06 电机 8 (ID: 0x12 / 18)
-    // Motor_groupHandle[17] = &Motor_Robstride06_Group8;
+    Motor_groupHandle[17] = &Motor_Robstride06_Group8;
     Motor_InitMotorGroup(&Motor_Robstride06_Group8, Motor_TYPE_RS06, 1, &hfdcan2, NULL, 0x12);
     Motor_InitMotor(&Motor_Robstride06_Motor8, Motor_TYPE_RS06, 0x12, 1.0f, RS06_encoder_callback);
     Motor_Robstride06_Group8.motor_handle[0] = &Motor_Robstride06_Motor8;
 
     // RS06 电机 9 (ID: 0x13 / 19)
-    // Motor_groupHandle[18] = &Motor_Robstride06_Group9;
+    Motor_groupHandle[18] = &Motor_Robstride06_Group9;
     Motor_InitMotorGroup(&Motor_Robstride06_Group9, Motor_TYPE_RS06, 1, &hfdcan2, NULL, 0x13);
     Motor_InitMotor(&Motor_Robstride06_Motor9, Motor_TYPE_RS06, 0x13, 1.0f, RS06_encoder_callback);
     Motor_Robstride06_Group9.motor_handle[0] = &Motor_Robstride06_Motor9;
 
     // RS06 电机 10 (ID: 0x14 / 20)
-    // Motor_groupHandle[19] = &Motor_Robstride06_Group10;
+    Motor_groupHandle[19] = &Motor_Robstride06_Group10;
     Motor_InitMotorGroup(&Motor_Robstride06_Group10, Motor_TYPE_RS06, 1, &hfdcan2, NULL, 0x14);
     Motor_InitMotor(&Motor_Robstride06_Motor10, Motor_TYPE_RS06, 0x14, 1.0f, RS06_encoder_callback);
     Motor_Robstride06_Group10.motor_handle[0] = &Motor_Robstride06_Motor10;
 
     // RS06 电机 11 (ID: 0x15 / 21)
-    // Motor_groupHandle[20] = &Motor_Robstride06_Group11;
+    Motor_groupHandle[20] = &Motor_Robstride06_Group11;
     Motor_InitMotorGroup(&Motor_Robstride06_Group11, Motor_TYPE_RS06, 1, &hfdcan2, NULL, 0x15);
     Motor_InitMotor(&Motor_Robstride06_Motor11, Motor_TYPE_RS06, 0x15, 1.0f, RS06_encoder_callback);
     Motor_Robstride06_Group11.motor_handle[0] = &Motor_Robstride06_Motor11;
 
     // RS06 电机 12 (ID: 0x16 / 22)
-    // Motor_groupHandle[21] = &Motor_Robstride06_Group12;
+    Motor_groupHandle[21] = &Motor_Robstride06_Group12;
     Motor_InitMotorGroup(&Motor_Robstride06_Group12, Motor_TYPE_RS06, 1, &hfdcan2, NULL, 0x16);
     Motor_InitMotor(&Motor_Robstride06_Motor12, Motor_TYPE_RS06, 0x16, 1.0f, RS06_encoder_callback);
     Motor_Robstride06_Group12.motor_handle[0] = &Motor_Robstride06_Motor12;
