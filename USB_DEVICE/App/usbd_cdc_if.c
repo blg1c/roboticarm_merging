@@ -295,8 +295,15 @@ uint8_t CDC_Transmit_HS(uint8_t* Buf, uint16_t Len)
   uint8_t result = USBD_OK;
   /* USER CODE BEGIN 12 */
   USBD_CDC_HandleTypeDef *hcdc = (USBD_CDC_HandleTypeDef*)hUsbDeviceHS.pClassData;
-  if (hcdc->TxState != 0){
-    return USBD_BUSY;
+  //if (hcdc->TxState != 0){
+  //  return USBD_BUSY;
+  //}
+  
+  uint32_t timeStart = HAL_GetTick();
+  while (hcdc->TxState)
+  {
+      if (HAL_GetTick() - timeStart > 20)
+          return USBD_BUSY;
   }
   USBD_CDC_SetTxBuffer(&hUsbDeviceHS, Buf, Len);
   result = USBD_CDC_TransmitPacket(&hUsbDeviceHS);
