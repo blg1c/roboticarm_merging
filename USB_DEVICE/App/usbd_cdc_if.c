@@ -22,7 +22,7 @@
 #include "usbd_cdc_if.h"
 
 /* USER CODE BEGIN INCLUDE */
-
+#include "comm_common.h"
 /* USER CODE END INCLUDE */
 
 /* Private typedef -----------------------------------------------------------*/
@@ -95,6 +95,8 @@ uint8_t UserRxBufferHS[APP_RX_DATA_SIZE];
 uint8_t UserTxBufferHS[APP_TX_DATA_SIZE];
 
 /* USER CODE BEGIN PRIVATE_VARIABLES */
+uint8_t  myUsbRxData[256] = { 0 };   // 接收到的数据
+uint32_t total_received = 0;  // 接收到的字节数
 
 /* USER CODE END PRIVATE_VARIABLES */
 
@@ -264,6 +266,17 @@ static int8_t CDC_Control_HS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
 static int8_t CDC_Receive_HS(uint8_t* Buf, uint32_t *Len)
 {
   /* USER CODE BEGIN 11 */
+  memcpy(&myUsbRxData[total_received], Buf, *Len);  // 把接收到的数据，复制到自己的缓存区中
+  total_received += *Len;                          
+  memset(Buf, 0, 64);                              // 处理完数据，清0接收缓存;
+
+  if(*Len != 64)
+  {
+	  Communicate_RXCallback_USB(myUsbRxData, total_received);
+	  total_received = 0;
+	  memset(myUsbRxData, 0, sizeof(myUsbRxData));
+  }
+	
   USBD_CDC_SetRxBuffer(&hUsbDeviceHS, &Buf[0]);
   USBD_CDC_ReceivePacket(&hUsbDeviceHS);
   return (USBD_OK);

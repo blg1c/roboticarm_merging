@@ -15,22 +15,6 @@
 LeftArm_DoubleLoopPIDTypeDef LeftArm_DoubleLoopPID[LEFT_ARM_DOUBLE_LOOP_PID_MOTOR_NUM] = {0};
 
 
-
-/**
- * @brief  根据电机类型和ID获取双环PID控制器句柄
- * @param  motor_type: 电机类型
- * @param  motor_id: 电机ID（1-5）
- * @retval 控制器句柄NULL表示无效
- */
-static LeftArm_DoubleLoopPIDTypeDef* LeftArm_DoubleLoopPID_GetHandle(Motor_MotorType_e motor_type, uint8_t motor_id) {
-    for (uint8_t i = 0; i < LEFT_ARM_DOUBLE_LOOP_PID_MOTOR_NUM; i++) {
-        if (LeftArm_DoubleLoopPID[i].motor_type == motor_type && LeftArm_DoubleLoopPID[i].motor_id == motor_id) {
-            return &LeftArm_DoubleLoopPID[i];
-        }
-    }
-    return NULL;
-}
-
 /**
  * @brief  初始化指定左臂电机的双环PID控制器
  * @param  motor_type: 电机类型
@@ -60,7 +44,7 @@ uint8_t LeftArm_DoubleLoopPID_Init(Motor_MotorType_e motor_type, uint8_t motor_i
     }
 
     // 3. 获取/分配双环PID控制器句柄
-    LeftArm_DoubleLoopPIDTypeDef* pid_hdl = LeftArm_DoubleLoopPID_GetHandle(motor_type, motor_id);
+    LeftArm_DoubleLoopPIDTypeDef* pid_hdl = &LeftArm_DoubleLoopPID[motor_id - 1];
     if (pid_hdl == NULL) {
         for (uint8_t i = 0; i < LEFT_ARM_DOUBLE_LOOP_PID_MOTOR_NUM; i++) {
             if (LeftArm_DoubleLoopPID[i].motor_id == 0) {
@@ -139,8 +123,8 @@ uint8_t LeftArm_DoubleLoopPID_Init(Motor_MotorType_e motor_type, uint8_t motor_i
  * @retval 0-成功 1-失败
  */
 uint8_t LeftArm_DoubleLoopPID_SetTargetPos(Motor_MotorType_e motor_type, uint8_t motor_id, float target_pos) {
-    LeftArm_DoubleLoopPIDTypeDef* pid_hdl = LeftArm_DoubleLoopPID_GetHandle(motor_type, motor_id);
-    if (pid_hdl == NULL || !pid_hdl->motor_hdl->is_online) {
+    LeftArm_DoubleLoopPIDTypeDef* pid_hdl = &LeftArm_DoubleLoopPID[motor_id - 1];
+    if (pid_hdl == NULL) {
         return 1;
     }
     pid_hdl->target_pos = target_pos;
@@ -153,7 +137,7 @@ uint8_t LeftArm_DoubleLoopPID_SetTargetPos(Motor_MotorType_e motor_type, uint8_t
  * @retval 输出控制扭矩(Nm)
  */
 float LeftArm_DoubleLoopPID_Calc(LeftArm_DoubleLoopPIDTypeDef* pid_hdl) {
-    if (pid_hdl == NULL || !pid_hdl->motor_hdl->is_online) {
+    if (pid_hdl == NULL) {
         return 0.0f;
     }
 
@@ -201,8 +185,8 @@ float LeftArm_DoubleLoopPID_Calc(LeftArm_DoubleLoopPIDTypeDef* pid_hdl) {
  * @retval 0-成功 1-失败
  */
 uint8_t LeftArm_DoubleLoopPID_ControlLoop(Motor_MotorType_e motor_type, uint8_t motor_id) {
-    LeftArm_DoubleLoopPIDTypeDef* pid_hdl = LeftArm_DoubleLoopPID_GetHandle(motor_type, motor_id);
-    if (pid_hdl == NULL || !pid_hdl->motor_hdl->is_online) {
+    LeftArm_DoubleLoopPIDTypeDef* pid_hdl = &LeftArm_DoubleLoopPID[motor_id - 1];
+    if (pid_hdl == NULL) {
         return 1;
     }
 
@@ -237,8 +221,8 @@ void LeftArm_Output() {
         }*/
 
         // 2. 获取电机CAN句柄（复用现有PID结构体的CAN句柄，保证一致性）
-        LeftArm_DoubleLoopPIDTypeDef* pid_hdl = LeftArm_DoubleLoopPID_GetHandle(motor_type, motor_id);
-        if (pid_hdl == NULL || pid_hdl->can_hdl == NULL || !pid_hdl->motor_hdl->is_online) {
+        LeftArm_DoubleLoopPIDTypeDef* pid_hdl = &LeftArm_DoubleLoopPID[motor_id - 1];
+        if (pid_hdl == NULL || pid_hdl->can_hdl == NULL) {
             continue;  // 控制器未初始化/CAN句柄无效/电机离线，跳过
         }
 

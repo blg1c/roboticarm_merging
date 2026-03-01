@@ -262,7 +262,7 @@ static uint8_t Comm_MergeAndverify(uint8_t buff[], uint32_t rxdatalen) {
 
   // 校验帧长度
   uint16_t frame_len = (uint16_t)(buff[2] | (buff[3] << 8));
-  if (frame_len != (uint16_t)(rxdatalen) - 4) { // 总长度 - 头(2) - 尾(2)
+  if (frame_len != (uint16_t)(rxdatalen)) { // 总长度 
     return 0;
   }
 
@@ -283,6 +283,7 @@ static uint8_t Comm_MergeAndverify(uint8_t buff[], uint32_t rxdatalen) {
 // 数据解码
 void Comm_DecodeData(uint8_t buff[], uint32_t rxdatalen) {
   Comm_DataTypeDef *buscomm = Comm_GetBusDataPtr();
+	//buscomm = buff;
   if (buscomm == NULL || buff == NULL || rxdatalen == 0) {
     return;
   }
@@ -298,9 +299,7 @@ void Comm_DecodeData(uint8_t buff[], uint32_t rxdatalen) {
   
   uint32_t len = 6;
 
-  // 跳过无效指令（指令类型为0）
-  if(buscomm->usb_watchBuff[5] == 0) return;
-
+  
   // 解析指令（按指令类型分支）
   switch(buscomm->usb_watchBuff[5])
   {
@@ -374,7 +373,7 @@ void Comm_DecodeData(uint8_t buff[], uint32_t rxdatalen) {
 
 // 4. USB接收回调（替换原UART的Communicate_RXCallback）
 void Communicate_RXCallback_USB(uint8_t* buff, uint32_t rxdatalen) {
-  if (buff == NULL || rxdatalen == 0) return;
+  //if (buff == NULL || rxdatalen == 0) return;
   
   Comm_DataTypeDef *buscomm = Comm_GetBusDataPtr();
   if (buscomm == NULL) return;
@@ -385,7 +384,10 @@ void Communicate_RXCallback_USB(uint8_t* buff, uint32_t rxdatalen) {
   // 复用原解析逻辑
   Comm_DecodeData(buff, rxdatalen);
 
+/*
   // 重启USB接收（必须调用，否则无法接收下一包数据）
   USBD_CDC_SetRxBuffer(Const_Comm_USB_HANDLER, buscomm->usb_watchBuff);
   USBD_CDC_ReceivePacket(Const_Comm_USB_HANDLER);
+*/
+	
 }

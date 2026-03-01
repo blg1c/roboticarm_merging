@@ -65,8 +65,8 @@ extern const float RS_KD_MAX;    // Kd(阻尼)最大值
 /* Communicate 层 (通信协议相关)                     */
 /* ========================================================================= */
 // 缓冲区长度定义
-#define COMM_SEND_BUFF_LEN                  64
-#define COMM_RECEIVE_BUFF_LEN               64
+#define COMM_SEND_BUFF_LEN                  256
+#define COMM_RECEIVE_BUFF_LEN               256
 #define Const_Comm_Transmit_BUFF_SIZE       3
 #define Const_Comm_Receive_BUFF_SIZE        9
 

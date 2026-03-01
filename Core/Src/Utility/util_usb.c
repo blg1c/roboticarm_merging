@@ -21,16 +21,20 @@ extern USBD_HandleTypeDef hUsbDeviceHS;
 static uint8_t* usb_rx_buff = NULL;
 static uint32_t usb_rx_buff_size = 0;
 
+/*
 // USB CDC接收回调（底层USB中断触发）
 void CDC_ReceiveCallback(uint8_t* Buf, uint32_t Len) {
     if (Buf == NULL || Len == 0) return;
     Usb_RxIdleCallback(Buf, Len);
 }
+*/
 
+/*
 // USB接收回调转发（对齐原UART逻辑）
 void Usb_RxIdleCallback(uint8_t* buff, uint32_t len) {
     Communicate_RXCallback_USB(buff, len);  // 替换原UART的回调入口
 }
+*/
 
 // USB发送数据（复用原UART的发送逻辑，替换为USB接口）
 void Usb_SendMessage(uint8_t txdata[], uint16_t size) {

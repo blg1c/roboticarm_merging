@@ -14,18 +14,6 @@
 Body_DoubleLoopPIDTypeDef Body_DoubleLoopPID[BODY_DOUBLE_LOOP_PID_MOTOR_NUM] = {0};
 
 /**
- * @brief 获取控制器句柄
- */
-static Body_DoubleLoopPIDTypeDef* Body_DoubleLoopPID_GetHandle(Motor_MotorType_e motor_type, uint8_t motor_id) {
-    for (uint8_t i = 0; i < BODY_DOUBLE_LOOP_PID_MOTOR_NUM; i++) {
-        if (Body_DoubleLoopPID[i].motor_type == motor_type && Body_DoubleLoopPID[i].motor_id == motor_id) {
-            return &Body_DoubleLoopPID[i];
-        }
-    }
-    return NULL;
-}
-
-/**
  * @brief 初始化指定躯干电机的双环PID控制器
  */
 uint8_t Body_DoubleLoopPID_Init(Motor_MotorType_e motor_type, uint8_t motor_id,
@@ -46,7 +34,7 @@ uint8_t Body_DoubleLoopPID_Init(Motor_MotorType_e motor_type, uint8_t motor_id,
     if (group_hdl == NULL || group_hdl->can_handle == NULL) return 1;
 
     // 4. 分配或获取PID句柄
-    Body_DoubleLoopPIDTypeDef* pid_hdl = Body_DoubleLoopPID_GetHandle(motor_type, motor_id);
+    Body_DoubleLoopPIDTypeDef* pid_hdl = &Body_DoubleLoopPID[motor_id - 1];
     if (pid_hdl == NULL) {
         for (uint8_t i = 0; i < BODY_DOUBLE_LOOP_PID_MOTOR_NUM; i++) {
             if (Body_DoubleLoopPID[i].motor_id == 0) { // 找个空位
@@ -86,7 +74,7 @@ uint8_t Body_DoubleLoopPID_Init(Motor_MotorType_e motor_type, uint8_t motor_id,
  * @brief 设置目标位置
  */
 uint8_t Body_DoubleLoopPID_SetTargetPos(Motor_MotorType_e motor_type, uint8_t motor_id, float target_pos) {
-    Body_DoubleLoopPIDTypeDef* pid_hdl = Body_DoubleLoopPID_GetHandle(motor_type, motor_id);
+    Body_DoubleLoopPIDTypeDef* pid_hdl = &Body_DoubleLoopPID[motor_id - 1];
     if (pid_hdl == NULL) return 1;
 
     // 目标位置限幅
@@ -98,7 +86,7 @@ uint8_t Body_DoubleLoopPID_SetTargetPos(Motor_MotorType_e motor_type, uint8_t mo
  * @brief 串级 PID 核心计算
  */
 float Body_DoubleLoopPID_Calc(Body_DoubleLoopPIDTypeDef* pid_hdl) {
-    if (pid_hdl == NULL || !pid_hdl->motor_hdl->is_online) return 0.0f;
+    if (pid_hdl == NULL) return 0.0f;
 
     float curr_pos = pid_hdl->motor_hdl->encoder.angle;
     float curr_speed = pid_hdl->motor_hdl->encoder.speed;
@@ -131,8 +119,8 @@ float Body_DoubleLoopPID_Calc(Body_DoubleLoopPIDTypeDef* pid_hdl) {
  * @brief PID 闭环执行函数，发送给下层
  */
 uint8_t Body_DoubleLoopPID_ControlLoop(Motor_MotorType_e motor_type, uint8_t motor_id) {
-    Body_DoubleLoopPIDTypeDef* pid_hdl = Body_DoubleLoopPID_GetHandle(motor_type, motor_id);
-    if (pid_hdl == NULL || pid_hdl->can_hdl == NULL || !pid_hdl->motor_hdl->is_online) {
+    Body_DoubleLoopPIDTypeDef* pid_hdl = &Body_DoubleLoopPID[motor_id - 1];
+    if (pid_hdl == NULL || pid_hdl->can_hdl == NULL) {
         return 1;
     }
 
@@ -156,8 +144,8 @@ void Body_Output(void) {
         Motor_MotorType_e motor_type = FDCAN_GetMotorTypeById(motor_id - 1);
      
 
-        Body_DoubleLoopPIDTypeDef* pid_hdl = Body_DoubleLoopPID_GetHandle(motor_type, motor_id);
-        if (pid_hdl == NULL || pid_hdl->can_hdl == NULL || !pid_hdl->motor_hdl->is_online) continue;
+        Body_DoubleLoopPIDTypeDef* pid_hdl = &Body_DoubleLoopPID[motor_id - 1];
+        if (pid_hdl == NULL || pid_hdl->can_hdl == NULL) continue;
 
         // 根据控制模式派发任务
         switch (cmd->mode) {
